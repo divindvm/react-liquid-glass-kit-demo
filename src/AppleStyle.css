@@ -1,0 +1,624 @@
+/* Apple Style Demo - Recreating Apple's Control Center */
+
+.apple-style-demo {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Apple-style Background */
+.apple-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at top left, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(118, 75, 162, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(240, 147, 251, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(245, 87, 108, 0.4) 0%, transparent 50%),
+    url('/src/assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+
+/* Top Navigation */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(30px) saturate(1.8) brightness(1.1);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8) brightness(1.1);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-bar-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Container */
+.apple-container {
+  margin-top: 80px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 50;
+}
+
+/* Header */
+.apple-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.apple-header h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.apple-header p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Control Center */
+.control-center {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Connectivity Widget */
+.connectivity-widget {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.connectivity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+  height: 100%;
+}
+
+.connectivity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.connectivity-item.active {
+  color: #00ff88;
+}
+
+.connectivity-icon {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 8px;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.connectivity-item.active .connectivity-icon {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: rgba(0, 255, 136, 0.4);
+}
+
+.connectivity-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 16px;
+}
+
+.bar {
+  width: 3px;
+  background: #00ff88;
+  border-radius: 1px;
+}
+
+.bar:nth-child(1) { height: 4px; }
+.bar:nth-child(2) { height: 8px; }
+.bar:nth-child(3) { height: 12px; }
+.bar:nth-child(4) { height: 16px; }
+
+.bluetooth-icon,
+.hotspot-icon,
+.vpn-icon {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Media Widget */
+.media-widget {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.media-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+}
+
+.album-art {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.album-placeholder {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.media-info {
+  flex: 1;
+  color: white;
+}
+
+.track-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.artist-name {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.media-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.media-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.media-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.play-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 16px;
+}
+
+.airplay-icon {
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+/* System Toggles */
+.system-toggles {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.toggle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.toggle-item:last-child {
+  margin-bottom: 0;
+}
+
+.toggle-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.toggle-item span {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.focus-btn {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.focus-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.focus-icon {
+  font-size: 16px;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* Sliders Widget */
+.sliders-widget {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.slider-container {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+
+.slider {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-track {
+  width: 8px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, #00ff88, #ffffff);
+  border-radius: 4px;
+  transition: height 0.3s ease;
+}
+
+.slider-icon {
+  font-size: 16px;
+  color: white;
+  opacity: 0.8;
+}
+
+/* Smart Home Widget */
+.smart-home-widget {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.smart-home-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+}
+
+.device-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.device-info {
+  color: white;
+}
+
+.device-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.device-type {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Device Controls */
+.device-controls {
+  padding: 20px;
+  min-height: 120px;
+}
+
+.device-controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+  justify-content: center;
+}
+
+.device-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  align-self: center;
+}
+
+.device-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Advanced Demo */
+.advanced-demo {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.advanced-demo h2 {
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.surface-demo-content {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.surface-demo-content h3 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+}
+
+.surface-demo-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin: 0 0 30px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demo-features {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.feature-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.feature-item span:last-child {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .apple-container {
+    padding: 20px 15px;
+  }
+  
+  .apple-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .connectivity-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .media-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .slider-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .slider-track {
+    height: 40px;
+  }
+  
+  .demo-features {
+    gap: 20px;
+  }
+  
+  .top-bar-content {
+    gap: 10px;
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .apple-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .connectivity-widget,
+  .media-widget,
+  .system-toggles,
+  .sliders-widget,
+  .smart-home-widget,
+  .device-controls {
+    padding: 15px;
+  }
+  
+  .connectivity-icon,
+  .device-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .album-art {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .toggle-btn,
+  .device-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}

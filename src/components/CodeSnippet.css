@@ -1,0 +1,151 @@
+/* Code Snippet */
+.code-snippet {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.language-badge {
+  background: rgba(0, 123, 255, 0.2);
+  color: #007bff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 123, 255, 0.3);
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.copy-button.copied {
+  background: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.4);
+  color: #28a745;
+}
+
+.code-content {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.code-content pre {
+  margin: 0;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #e6e6e6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.code-content code {
+  color: inherit;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-family: inherit;
+}
+
+/* Syntax highlighting for JSX/TSX */
+.language-tsx .token.tag {
+  color: #ff6b6b;
+}
+
+.language-tsx .token.attr-name {
+  color: #4ecdc4;
+}
+
+.language-tsx .token.attr-value {
+  color: #ffe66d;
+}
+
+.language-tsx .token.punctuation {
+  color: #a8a8a8;
+}
+
+.language-tsx .token.keyword {
+  color: #ff9ff3;
+}
+
+.language-tsx .token.string {
+  color: #ffe66d;
+}
+
+.language-tsx .token.number {
+  color: #4ecdc4;
+}
+
+.language-tsx .token.boolean {
+  color: #ff6b6b;
+}
+
+.language-tsx .token.function {
+  color: #4ecdc4;
+}
+
+.language-tsx .token.comment {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .code-header {
+    padding: 12px 15px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .code-content {
+    padding: 15px;
+  }
+  
+  .code-content pre {
+    font-size: 0.8rem;
+  }
+}
