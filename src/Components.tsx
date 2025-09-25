@@ -57,25 +57,29 @@ import {
   FileText,
   ToggleLeft,
   ToggleRight,
-  HelpCircle
+  HelpCircle,
+  Package,
+  Github,
+  BookOpen
 } from 'lucide-react';
 import './Components.css';
 import './components/GlassPropertiesControl.css';
 import './components/CodeSnippet.css';
 
 type ComponentCategory = 
-  | 'overview'
-  | 'buttons'
-  | 'inputs'
-  | 'cards'
-  | 'modals'
-  | 'sidebars'
-  | 'radio'
-  | 'checkbox'
-  | 'chips'
-  | 'toast'
-  | 'tooltip'
-  | 'preview';
+  | 'overview' 
+  | 'buttons' 
+  | 'inputs' 
+  | 'cards' 
+  | 'modals' 
+  | 'sidebars' 
+  | 'radio' 
+  | 'checkbox' 
+  | 'chips' 
+  | 'toast' 
+  | 'tooltip' 
+  | 'preview'
+  | 'documentation';
 
 function Components() {
   const [activeCategory, setActiveCategory] = useState<ComponentCategory>('overview');
@@ -112,30 +116,28 @@ function Components() {
 
   // Glass properties for each component section
   const [buttonProps, setButtonProps] = useState({
-    blur: 20,
-    brightness: 60,
+    backdropBlur: 20,
+    backdropBrightness: 60,
     opacity: 0.9,
-    displace: 8,
     borderRadius: 24,
-    saturation: 1.8
+    backdropSaturate: 1.8
   });
 
   const [inputProps, setInputProps] = useState({
-    blur: 20,
-    brightness: 60,
+    backdropBlur: 20,
+    backdropBrightness: 60,
     opacity: 0.9,
-    displace: 8,
     borderRadius: 24,
-    saturation: 1.8
+    backdropSaturate: 1.8
   });
 
   const [cardProps, setCardProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
+    backdropBlur: 20,
+    backdropBrightness: 60,
+    opacity: 0,
     displace: 8,
     borderRadius: 24,
-    saturation: 1.8
+    backdropSaturate: 1.8
   });
 
   const [modalProps, setModalProps] = useState({
@@ -239,7 +241,8 @@ function Components() {
     { id: 'chips' as ComponentCategory, label: 'Chips', icon: Tag },
     { id: 'toast' as ComponentCategory, label: 'Toast', icon: MessageSquare },
     { id: 'tooltip' as ComponentCategory, label: 'Tooltip', icon: HelpCircle },
-    { id: 'preview' as ComponentCategory, label: 'Live Preview', icon: Eye }
+    { id: 'preview' as ComponentCategory, label: 'Live Preview', icon: Eye },
+    { id: 'documentation' as ComponentCategory, label: 'Documentation', icon: BookOpen }
   ];
 
   const renderContent = () => {
@@ -289,11 +292,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={buttonProps.borderRadius}
-                displace={buttonProps.displace}
-                blur={buttonProps.blur}
-                brightness={buttonProps.brightness}
+                backdropBlur={buttonProps.backdropBlur}
+                backdropBrightness={buttonProps.backdropBrightness}
                 opacity={buttonProps.opacity}
-                saturation={buttonProps.saturation}
+                backdropSaturate={buttonProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Primary Buttons</h3>
@@ -302,12 +304,11 @@ function Components() {
                 <GlassButton
                   glowColor="white"
                   glowEffects={true}
-                  blur={buttonProps.blur}
+                  backdropBlur={buttonProps.backdropBlur}
                   opacity={buttonProps.opacity}
                   borderRadius={buttonProps.borderRadius}
-                  saturation={buttonProps.saturation}
-                  brightness={buttonProps.brightness}
-                  displace={buttonProps.displace}
+                  backdropSaturate={buttonProps.backdropSaturate}
+                  backdropBrightness={buttonProps.backdropBrightness}
                   style={{
                     background: `rgba(255, 255, 255, 0.1)`,
                     border: `0.5px solid rgba(255, 255, 255, 0.18)`,
@@ -320,12 +321,11 @@ function Components() {
                     className="secondary"
                     glowColor="gray"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(108, 117, 125, 0.1)`,
                       border: `0.5px solid rgba(108, 117, 125, 0.4)`,
@@ -338,12 +338,11 @@ function Components() {
                     className="success"
                     glowColor="green"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(40, 167, 69, 0.1)`,
                       border: `0.5px solid rgba(40, 167, 69, 0.4)`,
@@ -356,12 +355,11 @@ function Components() {
                     className="danger"
                     glowColor="red"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(220, 53, 69, 0.1)`,
                       border: `0.5px solid rgba(220, 53, 69, 0.4)`,
@@ -377,11 +375,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={buttonProps.borderRadius}
-                displace={buttonProps.displace}
-                blur={buttonProps.blur}
-                brightness={buttonProps.brightness}
+                backdropBlur={buttonProps.backdropBlur}
+                backdropBrightness={buttonProps.backdropBrightness}
                 opacity={buttonProps.opacity}
-                saturation={buttonProps.saturation}
+                backdropSaturate={buttonProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Icon Buttons</h3>
@@ -391,12 +388,11 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
@@ -409,12 +405,11 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
@@ -427,12 +422,11 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
@@ -445,14 +439,13 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
-                    blur={buttonProps.blur}
+                    backdropBlur={buttonProps.backdropBlur}
                     opacity={buttonProps.opacity}
                     borderRadius={buttonProps.borderRadius}
-                    saturation={buttonProps.saturation}
-                    brightness={buttonProps.brightness}
-                    displace={buttonProps.displace}
+                    backdropSaturate={buttonProps.backdropSaturate}
+                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`,
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
@@ -470,7 +463,7 @@ function Components() {
   glowEffects={true}
   style={{
     borderRadius: ${buttonProps.borderRadius}px,
-    backdropFilter: \`blur(\${${buttonProps.blur}}px) saturate(\${${buttonProps.saturation}}) brightness(\${${buttonProps.brightness}}%) contrast(1.2)\`,
+    backdropFilter: \`blur(\${${buttonProps.backdropBlur}}px) saturate(\${${buttonProps.backdropSaturate}}) brightness(\${${buttonProps.backdropBrightness}}%) contrast(1.2)\`,
     background: \`rgba(255, 255, 255, ${buttonProps.opacity})\`,
     border: \`0.5px solid rgba(255, 255, 255, 0.18)\`,
     boxShadow: \`0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)\`
@@ -500,29 +493,55 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={inputProps.borderRadius}
-                displace={inputProps.displace}
-                blur={inputProps.blur}
-                brightness={inputProps.brightness}
+                backdropBlur={inputProps.backdropBlur}
+                backdropBrightness={inputProps.backdropBrightness}
                 opacity={inputProps.opacity}
-                saturation={inputProps.saturation}
+                backdropSaturate={inputProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Text Inputs</h3>
                 <p>Input fields with glass styling</p>
                 <div className="input-showcase">
-                  <GlassInput 
-                    placeholder="Enter your name"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                  />
-                  <GlassInput 
-                    type="email"
-                    placeholder="Enter your email"
-                  />
-                  <GlassInput 
-                    type="password"
-                    placeholder="Enter password"
-                  />
+                  <div className="input-field">
+                    <label className="input-label">Name</label>
+                    <GlassInput 
+                      placeholder="Enter your name"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      backdropBlur={inputProps.backdropBlur}
+                      backdropBrightness={inputProps.backdropBrightness}
+                      opacity={inputProps.opacity}
+                      borderRadius={inputProps.borderRadius}
+                      backdropSaturate={inputProps.backdropSaturate}
+                      color="white"
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label className="input-label">Email</label>
+                    <GlassInput 
+                      type="email"
+                      placeholder="Enter your email"
+                      backdropBlur={inputProps.backdropBlur}
+                      backdropBrightness={inputProps.backdropBrightness}
+                      opacity={inputProps.opacity}
+                      borderRadius={inputProps.borderRadius}
+                      backdropSaturate={inputProps.backdropSaturate}
+                      color="white"
+                    />
+                  </div>
+                  <div className="input-field">
+                    <label className="input-label">Password</label>
+                    <GlassInput 
+                      type="password"
+                      placeholder="Enter password"
+                      backdropBlur={inputProps.backdropBlur}
+                      backdropBrightness={inputProps.backdropBrightness}
+                      opacity={inputProps.opacity}
+                      borderRadius={inputProps.borderRadius}
+                      backdropSaturate={inputProps.backdropSaturate}
+                      color="white"
+                    />
+                  </div>
                 </div>
               </GlassSurface>
 
@@ -530,11 +549,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={inputProps.borderRadius}
-                displace={inputProps.displace}
-                blur={inputProps.blur}
-                brightness={inputProps.brightness}
+                backdropBlur={inputProps.backdropBlur}
+                backdropBrightness={inputProps.backdropBrightness}
                 opacity={inputProps.opacity}
-                saturation={inputProps.saturation}
+                backdropSaturate={inputProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Search Input</h3>
@@ -545,6 +563,12 @@ function Components() {
                     <GlassInput 
                       placeholder="Search components..."
                       className="search-input"
+                      backdropBlur={inputProps.backdropBlur}
+                      backdropBrightness={inputProps.backdropBrightness}
+                      opacity={inputProps.opacity}
+                      borderRadius={inputProps.borderRadius}
+                      backdropSaturate={inputProps.backdropSaturate}
+                      color="white"
                     />
                   </div>
                 </div>
@@ -586,7 +610,7 @@ function Components() {
                 className="component-card"
                 style={{
                   borderRadius: `${cardProps.borderRadius}px`,
-                  backdropFilter: `blur(${cardProps.blur}px) saturate(${cardProps.saturation}) brightness(${cardProps.brightness}%) contrast(1.2)`,
+                  backdropFilter: `blur(${cardProps.backdropBlur}px) saturate(${cardProps.backdropSaturate}) brightness(${cardProps.backdropBrightness}%) contrast(1.2)`,
                   background: `rgba(255, 255, 255, ${cardProps.opacity})`,
                   border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                   boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
@@ -607,7 +631,7 @@ function Components() {
                 className="component-card"
                 style={{
                   borderRadius: `${cardProps.borderRadius}px`,
-                  backdropFilter: `blur(${cardProps.blur}px) saturate(${cardProps.saturation}) brightness(${cardProps.brightness}%) contrast(1.2)`,
+                  backdropFilter: `blur(${cardProps.backdropBlur}px) saturate(${cardProps.backdropSaturate}) brightness(${cardProps.backdropBrightness}%) contrast(1.2)`,
                   background: `rgba(255, 255, 255, ${cardProps.opacity})`,
                   border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                   boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
@@ -630,7 +654,7 @@ function Components() {
   className="component-card"
   style={{
     borderRadius: \`${cardProps.borderRadius}px\`,
-    backdropFilter: \`blur(\${${cardProps.blur}}px) saturate(\${${cardProps.saturation}}) brightness(\${${cardProps.brightness}}%) contrast(1.2)\`,
+    backdropFilter: \`blur(\${${cardProps.backdropBlur}}px) saturate(\${${cardProps.backdropSaturate}}) brightness(\${${cardProps.backdropBrightness}}%) contrast(1.2)\`,
     background: \`rgba(255, 255, 255, ${cardProps.opacity})\`,
     border: \`0.5px solid rgba(255, 255, 255, 0.18)\`,
     boxShadow: \`0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)\`
@@ -673,7 +697,7 @@ function Components() {
                 brightness={modalProps.brightness}
                 opacity={modalProps.opacity}
                 saturation={modalProps.saturation}
-                className="component-card"
+                className="component-card modal-showcase"
               >
                 <h3>Modal Demo</h3>
                 <p>Click the button to open a glass modal</p>
@@ -744,7 +768,7 @@ function Components() {
                 blur={20}
                 brightness={60}
                 opacity={0.9}
-                className="component-card"
+                className="component-card sidebar-showcase"
               >
                 <h3>Sidebar Demo</h3>
                 <p>Click the button to open a glass sidebar</p>
@@ -759,6 +783,8 @@ function Components() {
             <GlassSidebar
               isOpen={showSidebar}
               onClose={() => setShowSidebar(false)}
+              position="right"
+              width="400px"
             >
               <h2>Glass Sidebar</h2>
               <div className="device-list">
@@ -1187,6 +1213,436 @@ function Components() {
           </div>
         );
 
+      case 'documentation':
+        return (
+          <div className="content-section">
+            <h1>Documentation</h1>
+            <p>Complete API reference and usage examples for all components</p>
+
+            <div className="documentation-grid">
+              {/* GlassSurface Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassSurface</h3>
+                <p>Base glass morphism container component</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>blur</code>
+                      <span>number (default: 20)</span>
+                      <p>Backdrop blur intensity in pixels</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>opacity</code>
+                      <span>number (default: 0.9)</span>
+                      <p>Background opacity (0-1)</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>borderRadius</code>
+                      <span>number (default: 24)</span>
+                      <p>Border radius in pixels</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>displace</code>
+                      <span>number (default: 8)</span>
+                      <p>Displacement effect intensity</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>brightness</code>
+                      <span>number (default: 60)</span>
+                      <p>Backdrop brightness percentage</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>saturation</code>
+                      <span>number (default: 1.8)</span>
+                      <p>Backdrop saturation multiplier</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassSurface
+  blur={20}
+  opacity={0.9}
+  borderRadius={24}
+  displace={8}
+  brightness={60}
+  saturation={1.8}
+>
+  <h2>Your Content</h2>
+  <p>Glass morphism container</p>
+</GlassSurface>`}
+                  language="tsx"
+                  title="GlassSurface Example"
+                />
+              </GlassSurface>
+
+              {/* GlassButton Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassButton</h3>
+                <p>Interactive button with glass effects and hover animations</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>glowColor</code>
+                      <span>string (default: "white")</span>
+                      <p>Color of the glowing border animation</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>glowEffects</code>
+                      <span>boolean (default: true)</span>
+                      <p>Enable/disable glowing border animation</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>onClick</code>
+                      <span>function</span>
+                      <p>Click event handler</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>disabled</code>
+                      <span>boolean (default: false)</span>
+                      <p>Disable button interactions</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>className</code>
+                      <span>string</span>
+                      <p>Additional CSS classes</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassButton
+  glowColor="white"
+  glowEffects={true}
+  onClick={() => console.log('Clicked!')}
+  disabled={false}
+>
+  Click Me
+</GlassButton>`}
+                  language="tsx"
+                  title="GlassButton Example"
+                />
+              </GlassSurface>
+
+              {/* GlassInput Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassInput</h3>
+                <p>Input field with glass styling and focus effects</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>type</code>
+                      <span>string (default: "text")</span>
+                      <p>Input type (text, email, password, etc.)</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>placeholder</code>
+                      <span>string</span>
+                      <p>Placeholder text</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>value</code>
+                      <span>string</span>
+                      <p>Input value</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>onChange</code>
+                      <span>function</span>
+                      <p>Change event handler</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>color</code>
+                      <span>string (default: "white")</span>
+                      <p>Text color</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>as</code>
+                      <span>"input" | "textarea"</span>
+                      <p>Render as input or textarea</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassInput
+  type="email"
+  placeholder="Enter your email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  color="white"
+/>`}
+                  language="tsx"
+                  title="GlassInput Example"
+                />
+              </GlassSurface>
+
+              {/* GlassCard Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassCard</h3>
+                <p>Card container with glass effects for content organization</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>title</code>
+                      <span>string</span>
+                      <p>Card title (optional)</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>className</code>
+                      <span>string</span>
+                      <p>Additional CSS classes</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>style</code>
+                      <span>object</span>
+                      <p>Inline styles</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassCard
+  title="User Profile"
+  className="user-card"
+  style={{ maxWidth: '400px' }}
+>
+  <h3>John Doe</h3>
+  <p>Software Developer</p>
+  <GlassButton>View Profile</GlassButton>
+</GlassCard>`}
+                  language="tsx"
+                  title="GlassCard Example"
+                />
+              </GlassSurface>
+
+              {/* GlassModal Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassModal</h3>
+                <p>Modal dialog with glass overlay and backdrop blur</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>isOpen</code>
+                      <span>boolean</span>
+                      <p>Control modal visibility</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>onClose</code>
+                      <span>function</span>
+                      <p>Close event handler</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>title</code>
+                      <span>string</span>
+                      <p>Modal title (optional)</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>closeOnBackdropClick</code>
+                      <span>boolean (default: true)</span>
+                      <p>Close when clicking backdrop</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>size</code>
+                      <span>"small" | "medium" | "large"</span>
+                      <p>Modal size variant</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassModal
+  isOpen={showModal}
+  onClose={() => setShowModal(false)}
+  title="Settings"
+  closeOnBackdropClick={true}
+  size="medium"
+>
+  <p>Modal content goes here</p>
+  <GlassButton onClick={() => setShowModal(false)}>
+    Close
+  </GlassButton>
+</GlassModal>`}
+                  language="tsx"
+                  title="GlassModal Example"
+                />
+              </GlassSurface>
+
+              {/* GlassSidebar Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassSidebar</h3>
+                <p>Sidebar that slides in from left or right with glass effects</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>isOpen</code>
+                      <span>boolean</span>
+                      <p>Control sidebar visibility</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>onClose</code>
+                      <span>function</span>
+                      <p>Close event handler</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>position</code>
+                      <span>"left" | "right" (default: "right")</span>
+                      <p>Sidebar position</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>width</code>
+                      <span>string (default: "400px")</span>
+                      <p>Sidebar width</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>closeOnBackdropClick</code>
+                      <span>boolean (default: true)</span>
+                      <p>Close when clicking backdrop</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassSidebar
+  isOpen={showSidebar}
+  onClose={() => setShowSidebar(false)}
+  position="right"
+  width="400px"
+  closeOnBackdropClick={true}
+>
+  <h3>Navigation</h3>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</GlassSidebar>`}
+                  language="tsx"
+                  title="GlassSidebar Example"
+                />
+              </GlassSurface>
+
+              {/* GlassTooltip Documentation */}
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>GlassTooltip</h3>
+                <p>Tooltip with glass effects and configurable positioning</p>
+                
+                <div className="props-section">
+                  <h4>Props</h4>
+                  <div className="props-list">
+                    <div className="prop-item">
+                      <code>content</code>
+                      <span>string</span>
+                      <p>Tooltip content text</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>position</code>
+                      <span>"top" | "bottom" | "left" | "right"</span>
+                      <p>Tooltip position relative to trigger</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>delay</code>
+                      <span>number (default: 300)</span>
+                      <p>Show delay in milliseconds</p>
+                    </div>
+                    <div className="prop-item">
+                      <code>children</code>
+                      <span>ReactNode</span>
+                      <p>Element that triggers the tooltip</p>
+                    </div>
+                  </div>
+                </div>
+
+                <CodeSnippet
+                  code={`<GlassTooltip
+  content="This is a helpful tooltip"
+  position="top"
+  delay={300}
+>
+  <GlassButton>Hover me</GlassButton>
+</GlassTooltip>`}
+                  language="tsx"
+                  title="GlassTooltip Example"
+                />
+              </GlassSurface>
+            </div>
+          </div>
+        );
+
       default:
         return <div>Component not found</div>;
     }
@@ -1215,14 +1671,15 @@ function Components() {
             <div className="notifications-icon">
               <Bell size={18} />
             </div>
-            <div 
-              className="background-switcher" 
-              onClick={switchBackground} 
-              title="Switch Background"
-              data-bg={backgrounds[currentBackground]}
-            >
-              <Settings size={18} />
-            </div>
+          <div
+            className="background-switcher"
+            onClick={switchBackground}
+            title="Switch Background"
+            data-bg={backgrounds[currentBackground]}
+          >
+            <Settings size={16} />
+            <span>Change Background</span>
+          </div>
           </div>
         </div>
       </div>
@@ -1254,6 +1711,35 @@ function Components() {
           {renderContent()}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="app-footer">
+        <div className="footer-content">
+          <p className="copyright">
+            © 2025 by Divin Divakaran
+          </p>
+          <div className="footer-links">
+            <a 
+              href="https://www.npmjs.com/package/react-liquid-glass-kit" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              <Package size={16} />
+              NPM Package
+            </a>
+            <a 
+              href="https://github.com/divindvm/react-liquid-glass-kit" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              <Github size={16} />
+              GitHub Repository
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

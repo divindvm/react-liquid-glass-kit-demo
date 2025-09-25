@@ -2,12 +2,11 @@ import React from 'react';
 import { Sliders, Zap, Eye, EyeOff, Palette, Settings } from 'lucide-react';
 
 interface GlassProperties {
-  blur: number;
-  brightness: number;
+  backdropBlur: number;
+  backdropBrightness: number;
   opacity: number;
-  displace: number;
   borderRadius: number;
-  saturation: number;
+  backdropSaturate: number;
 }
 
 interface GlassPropertiesControlProps {
@@ -33,14 +32,14 @@ const GlassPropertiesControl: React.FC<GlassPropertiesControlProps> = ({
         <div className="control-group">
           <label>
             <Zap size={14} />
-            Blur: {properties.blur}px
+            Blur: {properties.backdropBlur}px
           </label>
           <input
             type="range"
             min="0"
             max="50"
-            value={properties.blur}
-            onChange={(e) => onPropertyChange('blur', parseInt(e.target.value))}
+            value={properties.backdropBlur}
+            onChange={(e) => onPropertyChange('backdropBlur', parseInt(e.target.value))}
             className="control-slider"
           />
         </div>
@@ -48,14 +47,14 @@ const GlassPropertiesControl: React.FC<GlassPropertiesControlProps> = ({
         <div className="control-group">
           <label>
             <Eye size={14} />
-            Brightness: {properties.brightness}%
+            Brightness: {properties.backdropBrightness}%
           </label>
           <input
             type="range"
             min="0"
-            max="100"
-            value={properties.brightness}
-            onChange={(e) => onPropertyChange('brightness', parseInt(e.target.value))}
+            max="200"
+            value={properties.backdropBrightness}
+            onChange={(e) => onPropertyChange('backdropBrightness', parseInt(e.target.value))}
             className="control-slider"
           />
         </div>
@@ -76,20 +75,6 @@ const GlassPropertiesControl: React.FC<GlassPropertiesControlProps> = ({
           />
         </div>
 
-        <div className="control-group">
-          <label>
-            <Palette size={14} />
-            Displace: {properties.displace}px
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="30"
-            value={properties.displace}
-            onChange={(e) => onPropertyChange('displace', parseInt(e.target.value))}
-            className="control-slider"
-          />
-        </div>
 
         <div className="control-group">
           <label>
@@ -109,15 +94,15 @@ const GlassPropertiesControl: React.FC<GlassPropertiesControlProps> = ({
         <div className="control-group">
           <label>
             <Palette size={14} />
-            Saturation: {properties.saturation}
+            Saturation: {properties.backdropSaturate}
           </label>
           <input
             type="range"
             min="0"
             max="3"
             step="0.1"
-            value={properties.saturation}
-            onChange={(e) => onPropertyChange('saturation', parseFloat(e.target.value))}
+            value={properties.backdropSaturate}
+            onChange={(e) => onPropertyChange('backdropSaturate', parseFloat(e.target.value))}
             className="control-slider"
           />
         </div>
