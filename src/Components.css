@@ -54,7 +54,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
   padding: 0 20px;
   justify-content: space-between;
 }
@@ -150,10 +149,25 @@
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
+  padding-top: 100px;
+}
+
+.sidebar-header {
+  padding: 0 20px 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
 }
 
 .sidebar-nav {
-  padding: 20px 0;
+  padding: 0 0 20px 0;
   flex: 1;
   overflow-y: auto;
 }
@@ -361,13 +375,13 @@
   border-radius: 12px;
   padding: 2px;
   background: linear-gradient(45deg, 
-    rgba(255, 255, 255, 0.8), 
-    rgba(255, 255, 255, 0.6), 
-    rgba(255, 255, 255, 0.8), 
-    rgba(255, 255, 255, 0.6),
-    rgba(255, 255, 255, 0.8)
+    rgba(255, 255, 255, 0.9), 
+    rgba(255, 255, 255, 0.7), 
+    rgba(255, 255, 255, 0.9), 
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.9)
   );
-  background-size: 300% 300%;
+  background-size: 400% 400%;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -380,7 +394,7 @@
 .button-showcase .glass-button:hover::before,
 .button-showcase .glass-morphism--button:hover::before {
   opacity: 1;
-  animation: glowing-border 2s linear infinite;
+  animation: glowing-border 4s ease-in-out infinite;
 }
 
 .button-showcase .glass-button:hover,
@@ -427,13 +441,19 @@
 
 @keyframes glowing-border {
   0% {
-    background-position: 0% 50%;
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 0% 0%;
   }
 }
 
@@ -611,13 +631,13 @@
   border-radius: 50%;
   padding: 2px;
   background: linear-gradient(45deg, 
-    rgba(0, 123, 255, 0.8), 
-    rgba(0, 255, 136, 0.8), 
-    rgba(255, 107, 107, 0.8), 
-    rgba(255, 193, 7, 0.8),
-    rgba(0, 123, 255, 0.8)
+    rgba(255, 255, 255, 0.9), 
+    rgba(255, 255, 255, 0.7), 
+    rgba(255, 255, 255, 0.9), 
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.9)
   );
-  background-size: 300% 300%;
+  background-size: 400% 400%;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: xor;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -629,7 +649,7 @@
 
 .icon-btn:hover::before {
   opacity: 1;
-  animation: glowing-border 2s linear infinite;
+  animation: glowing-border 4s ease-in-out infinite;
 }
 
 .icon-btn:hover {
@@ -813,6 +833,59 @@
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   margin-top: 20px;
+}
+
+/* Tooltip Showcase */
+.tooltip-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tooltip-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tooltip-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tooltip-icon:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.tooltip-text {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(1.6) brightness(1.1);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tooltip-text:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Modal Controls */

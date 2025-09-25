@@ -56,7 +56,8 @@ import {
   MessageSquare,
   FileText,
   ToggleLeft,
-  ToggleRight
+  ToggleRight,
+  HelpCircle
 } from 'lucide-react';
 import './Components.css';
 import './components/GlassPropertiesControl.css';
@@ -69,11 +70,11 @@ type ComponentCategory =
   | 'cards'
   | 'modals'
   | 'sidebars'
-  | 'forms'
   | 'radio'
   | 'checkbox'
   | 'chips'
   | 'toast'
+  | 'tooltip'
   | 'preview';
 
 function Components() {
@@ -233,11 +234,11 @@ function Components() {
     { id: 'cards' as ComponentCategory, label: 'Cards', icon: Square },
     { id: 'modals' as ComponentCategory, label: 'Modals', icon: Monitor },
     { id: 'sidebars' as ComponentCategory, label: 'Sidebars', icon: Menu },
-    { id: 'forms' as ComponentCategory, label: 'Forms', icon: FileText },
     { id: 'radio' as ComponentCategory, label: 'Radio', icon: Circle },
     { id: 'checkbox' as ComponentCategory, label: 'Checkbox', icon: CheckSquare },
     { id: 'chips' as ComponentCategory, label: 'Chips', icon: Tag },
     { id: 'toast' as ComponentCategory, label: 'Toast', icon: MessageSquare },
+    { id: 'tooltip' as ComponentCategory, label: 'Tooltip', icon: HelpCircle },
     { id: 'preview' as ComponentCategory, label: 'Live Preview', icon: Eye }
   ];
 
@@ -298,27 +299,35 @@ function Components() {
                 <h3>Primary Buttons</h3>
                 <p>Main action buttons with glass effects</p>
                 <div className="button-showcase">
-                  <GlassButton 
-                    glowColor="white"
-                    glowEffects={true}
-                    style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(255, 255, 255, ${buttonProps.opacity})`,
-                      border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
-                    }}
-                  >
-                    Primary Button
-                  </GlassButton>
+                <GlassButton
+                  glowColor="white"
+                  glowEffects={true}
+                  blur={buttonProps.blur}
+                  opacity={buttonProps.opacity}
+                  borderRadius={buttonProps.borderRadius}
+                  saturation={buttonProps.saturation}
+                  brightness={buttonProps.brightness}
+                  displace={buttonProps.displace}
+                  style={{
+                    background: `rgba(255, 255, 255, 0.1)`,
+                    border: `0.5px solid rgba(255, 255, 255, 0.18)`,
+                    boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                  }}
+                >
+                  Primary Button
+                </GlassButton>
                   <GlassButton 
                     className="secondary"
                     glowColor="gray"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(108, 117, 125, 0.15)`,
+                      background: `rgba(108, 117, 125, 0.1)`,
                       border: `0.5px solid rgba(108, 117, 125, 0.4)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -329,10 +338,14 @@ function Components() {
                     className="success"
                     glowColor="green"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(40, 167, 69, 0.2)`,
+                      background: `rgba(40, 167, 69, 0.1)`,
                       border: `0.5px solid rgba(40, 167, 69, 0.4)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -343,10 +356,14 @@ function Components() {
                     className="danger"
                     glowColor="red"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(220, 53, 69, 0.2)`,
+                      background: `rgba(220, 53, 69, 0.1)`,
                       border: `0.5px solid rgba(220, 53, 69, 0.4)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -374,10 +391,14 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(255, 255, 255, ${buttonProps.opacity})`,
+                      background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -388,10 +409,14 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(255, 255, 255, ${buttonProps.opacity})`,
+                      background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -402,10 +427,14 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
-                      backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(255, 255, 255, ${buttonProps.opacity})`,
+                      background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -416,10 +445,15 @@ function Components() {
                     className="icon-btn"
                     glowColor="white"
                     glowEffects={true}
+                    blur={buttonProps.blur}
+                    opacity={buttonProps.opacity}
+                    borderRadius={buttonProps.borderRadius}
+                    saturation={buttonProps.saturation}
+                    brightness={buttonProps.brightness}
+                    displace={buttonProps.displace}
                     style={{
-                      borderRadius: `${buttonProps.borderRadius}px`,
                       backdropFilter: `blur(${buttonProps.blur}px) saturate(${buttonProps.saturation}) brightness(${buttonProps.brightness}%) contrast(1.2)`,
-                      background: `rgba(255, 255, 255, ${buttonProps.opacity})`,
+                      background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
                       boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
                     }}
@@ -943,6 +977,75 @@ function Components() {
           </div>
         );
 
+      case 'tooltip':
+        return (
+          <div className="content-section">
+            <h1>Glass Tooltips</h1>
+            <p>Tooltip components with glass effects and positioning</p>
+            
+            <div className="component-grid">
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>Tooltip Positions</h3>
+                <p>Hover over buttons to see tooltips in different positions</p>
+                <div className="tooltip-showcase">
+                  <div className="tooltip-row">
+                    <GlassTooltip content="This is a top tooltip" position="top">
+                      <GlassButton>Top Tooltip</GlassButton>
+                    </GlassTooltip>
+                    <GlassTooltip content="This is a bottom tooltip" position="bottom">
+                      <GlassButton>Bottom Tooltip</GlassButton>
+                    </GlassTooltip>
+                  </div>
+                  <div className="tooltip-row">
+                    <GlassTooltip content="This is a left tooltip" position="left">
+                      <GlassButton>Left Tooltip</GlassButton>
+                    </GlassTooltip>
+                    <GlassTooltip content="This is a right tooltip" position="right">
+                      <GlassButton>Right Tooltip</GlassButton>
+                    </GlassTooltip>
+                  </div>
+                </div>
+              </GlassSurface>
+
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={24}
+                displace={8}
+                blur={20}
+                brightness={60}
+                opacity={0.9}
+                className="component-card"
+              >
+                <h3>Tooltip with Different Elements</h3>
+                <p>Tooltips work with various elements</p>
+                <div className="tooltip-showcase">
+                  <GlassTooltip content="This is a tooltip on a button">
+                    <GlassButton>Button with Tooltip</GlassButton>
+                  </GlassTooltip>
+                  <GlassTooltip content="This is a tooltip on an icon">
+                    <div className="tooltip-icon">
+                      <Settings size={24} />
+                    </div>
+                  </GlassTooltip>
+                  <GlassTooltip content="This is a tooltip on text">
+                    <span className="tooltip-text">Hover me for tooltip</span>
+                  </GlassTooltip>
+                </div>
+              </GlassSurface>
+            </div>
+          </div>
+        );
+
       case 'preview':
         return (
           <div className="content-section">
@@ -1128,6 +1231,9 @@ function Components() {
         {/* Sidebar Navigation */}
         <div className="sidebar">
           <div className="sidebar-container">
+            <div className="sidebar-header">
+              <h2>Components</h2>
+            </div>
             <nav className="sidebar-nav">
               {categories.map(category => (
                 <button
