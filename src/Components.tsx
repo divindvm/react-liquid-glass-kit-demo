@@ -1541,7 +1541,7 @@ function Components() {
       <div 
         className="background-image"
         style={{
-          backgroundImage: `url('/src/assets/${backgrounds[currentBackground]}')`
+          backgroundImage: `url('./assets/${backgrounds[currentBackground]}')`
         }}
       ></div>
       
