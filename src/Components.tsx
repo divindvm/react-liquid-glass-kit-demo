@@ -107,7 +107,7 @@ function Components() {
   const [inputProps, setInputProps] = useState({
     backdropBlur: 20,
     backdropBrightness: 60,
-    opacity: 0.9,
+    opacity: 0.1,
     borderRadius: 24,
     backdropSaturate: 1.8
   });
