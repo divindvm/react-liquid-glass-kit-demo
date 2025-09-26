@@ -350,8 +350,6 @@ function Components() {
 
             <CodeSnippet
               code={`<GlassButton
-  glowColor="white"
-  glowEffects={true}
   style={{
     borderRadius: ${buttonProps.borderRadius}px,
     backdropFilter: \`blur(\${${buttonProps.backdropBlur}}px) saturate(\${${buttonProps.backdropSaturate}}) brightness(\${${buttonProps.backdropBrightness}}%) contrast(1.2)\`,
@@ -1199,16 +1197,6 @@ function Components() {
                   <h4>Props</h4>
                   <div className="props-list">
                     <div className="prop-item">
-                      <code>glowColor</code>
-                      <span>string (default: "white")</span>
-                      <p>Color of the glowing border animation</p>
-                    </div>
-                    <div className="prop-item">
-                      <code>glowEffects</code>
-                      <span>boolean (default: true)</span>
-                      <p>Enable/disable glowing border animation</p>
-                    </div>
-                    <div className="prop-item">
                       <code>onClick</code>
                       <span>function</span>
                       <p>Click event handler</p>
@@ -1228,10 +1216,15 @@ function Components() {
 
                 <CodeSnippet
                   code={`<GlassButton
-  glowColor="white"
-  glowEffects={true}
   onClick={() => console.log('Clicked!')}
   disabled={false}
+  style={{
+    borderRadius: '24px',
+    backdropFilter: 'blur(20px) saturate(1.8) brightness(60%) contrast(1.2)',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '0.5px solid rgba(255, 255, 255, 0.18)',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)'
+  }}
 >
   Click Me
 </GlassButton>`}
