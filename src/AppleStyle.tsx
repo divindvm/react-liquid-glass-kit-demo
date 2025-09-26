@@ -7,8 +7,8 @@ import {
 import './AppleStyle.css';
 
 function AppleStyle() {
-  const [brightness, setBrightness] = useState(75);
-  const [volume, setVolume] = useState(50);
+  const [brightness] = useState(75);
+  const [volume] = useState(50);
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (

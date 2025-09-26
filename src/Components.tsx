@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-  GlassMorphism,
   GlassCard,
   GlassButton,
   GlassInput,
@@ -17,46 +16,29 @@ import GlassPropertiesControl from './components/GlassPropertiesControl';
 import CodeSnippet from './components/CodeSnippet';
 import { 
   Home, 
-  Puzzle, 
-  Apple, 
   Search, 
   Bell, 
   Settings, 
-  Smartphone,
   User,
   Plus,
-  Video,
-  Mic,
   Power,
-  Fan,
-  Timer,
   Monitor,
   Lightbulb,
-  Wifi,
   Music,
-  Shuffle,
-  SkipBack,
   Play,
   Pause,
-  SkipForward,
-  Repeat,
-  Bed,
-  Trash2,
   Sliders,
   Palette,
   Zap,
   Eye,
   EyeOff,
   Menu,
-  X,
   CheckSquare,
   Square,
   Circle,
   Tag,
   MessageSquare,
   FileText,
-  ToggleLeft,
-  ToggleRight,
   HelpCircle,
   Package,
   Github,
@@ -86,7 +68,6 @@ function Components() {
   const [inputValue, setInputValue] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
   const [checkboxValues, setCheckboxValues] = useState({
     option1: false,
@@ -149,59 +130,6 @@ function Components() {
     saturation: 1.8
   });
 
-  const [sidebarProps, setSidebarProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
-
-  const [formProps, setFormProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
-
-  const [radioProps, setRadioProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
-
-  const [checkboxProps, setCheckboxProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
-
-  const [chipProps, setChipProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
-
-  const [toastProps, setToastProps] = useState({
-    blur: 20,
-    brightness: 60,
-    opacity: 0.9,
-    displace: 8,
-    borderRadius: 24,
-    saturation: 1.8
-  });
 
   // Background switcher state
   const [currentBackground, setCurrentBackground] = useState(0);
@@ -255,22 +183,26 @@ function Components() {
             
             <div className="overview-grid">
               {categories.slice(1).map(category => (
-                <GlassSurface
+                <div
                   key={category.id}
-                  width="100%"
-                  height="auto"
-                  borderRadius={20}
-                  displace={8}
-                  blur={20}
-                  brightness={60}
-                  opacity={0.9}
                   className="overview-card"
                   onClick={() => setActiveCategory(category.id)}
+                  style={{ cursor: 'pointer' }}
                 >
-                  <category.icon size={32} />
-                  <h3>{category.label}</h3>
-                  <p>Interactive {category.label.toLowerCase()} with glass effects</p>
-                </GlassSurface>
+                  <GlassSurface
+                    width="100%"
+                    height="auto"
+                    borderRadius={20}
+                    displace={8}
+                    blur={20}
+                    brightness={60}
+                    opacity={0.9}
+                  >
+                    <category.icon size={32} />
+                    <h3>{category.label}</h3>
+                    <p>Interactive {category.label.toLowerCase()} with glass effects</p>
+                  </GlassSurface>
+                </div>
               ))}
             </div>
           </div>
@@ -292,78 +224,58 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={buttonProps.borderRadius}
-                backdropBlur={buttonProps.backdropBlur}
-                backdropBrightness={buttonProps.backdropBrightness}
+                blur={buttonProps.backdropBlur}
+                brightness={buttonProps.backdropBrightness}
                 opacity={buttonProps.opacity}
-                backdropSaturate={buttonProps.backdropSaturate}
+                saturation={buttonProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Primary Buttons</h3>
                 <p>Main action buttons with glass effects</p>
                 <div className="button-showcase">
                 <GlassButton
-                  glowColor="white"
-                  glowEffects={true}
-                  backdropBlur={buttonProps.backdropBlur}
-                  opacity={buttonProps.opacity}
-                  borderRadius={buttonProps.borderRadius}
-                  backdropSaturate={buttonProps.backdropSaturate}
-                  backdropBrightness={buttonProps.backdropBrightness}
                   style={{
                     background: `rgba(255, 255, 255, 0.1)`,
                     border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                    boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                    boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                    borderRadius: `${buttonProps.borderRadius}px`,
+                    backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                   }}
                 >
                   Primary Button
                 </GlassButton>
                   <GlassButton 
                     className="secondary"
-                    glowColor="gray"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(108, 117, 125, 0.1)`,
                       border: `0.5px solid rgba(108, 117, 125, 0.4)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     Secondary
                   </GlassButton>
                   <GlassButton 
                     className="success"
-                    glowColor="green"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(40, 167, 69, 0.1)`,
                       border: `0.5px solid rgba(40, 167, 69, 0.4)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     Success
                   </GlassButton>
                   <GlassButton 
                     className="danger"
-                    glowColor="red"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(220, 53, 69, 0.1)`,
                       border: `0.5px solid rgba(220, 53, 69, 0.4)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     Danger
@@ -375,10 +287,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={buttonProps.borderRadius}
-                backdropBlur={buttonProps.backdropBlur}
-                backdropBrightness={buttonProps.backdropBrightness}
+                blur={buttonProps.backdropBlur}
+                brightness={buttonProps.backdropBrightness}
                 opacity={buttonProps.opacity}
-                backdropSaturate={buttonProps.backdropSaturate}
+                saturation={buttonProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Icon Buttons</h3>
@@ -386,69 +298,48 @@ function Components() {
                 <div className="icon-button-showcase">
                   <GlassButton 
                     className="icon-btn"
-                    glowColor="white"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     <Play size={20} />
                   </GlassButton>
                   <GlassButton 
                     className="icon-btn"
-                    glowColor="white"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     <Pause size={20} />
                   </GlassButton>
                   <GlassButton 
                     className="icon-btn"
-                    glowColor="white"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`,
+                      backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`
                     }}
                   >
                     <Settings size={20} />
                   </GlassButton>
                   <GlassButton 
                     className="icon-btn"
-                    glowColor="white"
-                    glowEffects={true}
-                    backdropBlur={buttonProps.backdropBlur}
-                    opacity={buttonProps.opacity}
-                    borderRadius={buttonProps.borderRadius}
-                    backdropSaturate={buttonProps.backdropSaturate}
-                    backdropBrightness={buttonProps.backdropBrightness}
                     style={{
                       backdropFilter: `blur(${buttonProps.backdropBlur}px) saturate(${buttonProps.backdropSaturate}) brightness(${buttonProps.backdropBrightness}%) contrast(1.2)`,
                       background: `rgba(255, 255, 255, 0.1)`,
                       border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`,
+                      borderRadius: `${buttonProps.borderRadius}px`
                     }}
                   >
                     <Power size={20} />
@@ -493,10 +384,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={inputProps.borderRadius}
-                backdropBlur={inputProps.backdropBlur}
-                backdropBrightness={inputProps.backdropBrightness}
+                blur={inputProps.backdropBlur}
+                brightness={inputProps.backdropBrightness}
                 opacity={inputProps.opacity}
-                backdropSaturate={inputProps.backdropSaturate}
+                saturation={inputProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Text Inputs</h3>
@@ -508,12 +399,13 @@ function Components() {
                       placeholder="Enter your name"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      backdropBlur={inputProps.backdropBlur}
-                      backdropBrightness={inputProps.backdropBrightness}
-                      opacity={inputProps.opacity}
-                      borderRadius={inputProps.borderRadius}
-                      backdropSaturate={inputProps.backdropSaturate}
-                      color="white"
+                      style={{
+                        borderRadius: `${inputProps.borderRadius}px`,
+                        backdropFilter: `blur(${inputProps.backdropBlur}px) saturate(${inputProps.backdropSaturate}) brightness(${inputProps.backdropBrightness}%) contrast(1.2)`,
+                        background: `rgba(255, 255, 255, ${inputProps.opacity})`,
+                        border: `0.5px solid rgba(255, 255, 255, 0.18)`,
+                        color: 'white'
+                      }}
                     />
                   </div>
                   <div className="input-field">
@@ -521,12 +413,13 @@ function Components() {
                     <GlassInput 
                       type="email"
                       placeholder="Enter your email"
-                      backdropBlur={inputProps.backdropBlur}
-                      backdropBrightness={inputProps.backdropBrightness}
-                      opacity={inputProps.opacity}
-                      borderRadius={inputProps.borderRadius}
-                      backdropSaturate={inputProps.backdropSaturate}
-                      color="white"
+                      style={{
+                        borderRadius: `${inputProps.borderRadius}px`,
+                        backdropFilter: `blur(${inputProps.backdropBlur}px) saturate(${inputProps.backdropSaturate}) brightness(${inputProps.backdropBrightness}%) contrast(1.2)`,
+                        background: `rgba(255, 255, 255, ${inputProps.opacity})`,
+                        border: `0.5px solid rgba(255, 255, 255, 0.18)`,
+                        color: 'white'
+                      }}
                     />
                   </div>
                   <div className="input-field">
@@ -534,12 +427,13 @@ function Components() {
                     <GlassInput 
                       type="password"
                       placeholder="Enter password"
-                      backdropBlur={inputProps.backdropBlur}
-                      backdropBrightness={inputProps.backdropBrightness}
-                      opacity={inputProps.opacity}
-                      borderRadius={inputProps.borderRadius}
-                      backdropSaturate={inputProps.backdropSaturate}
-                      color="white"
+                      style={{
+                        borderRadius: `${inputProps.borderRadius}px`,
+                        backdropFilter: `blur(${inputProps.backdropBlur}px) saturate(${inputProps.backdropSaturate}) brightness(${inputProps.backdropBrightness}%) contrast(1.2)`,
+                        background: `rgba(255, 255, 255, ${inputProps.opacity})`,
+                        border: `0.5px solid rgba(255, 255, 255, 0.18)`,
+                        color: 'white'
+                      }}
                     />
                   </div>
                 </div>
@@ -549,10 +443,10 @@ function Components() {
                 width="100%"
                 height="auto"
                 borderRadius={inputProps.borderRadius}
-                backdropBlur={inputProps.backdropBlur}
-                backdropBrightness={inputProps.backdropBrightness}
+                blur={inputProps.backdropBlur}
+                brightness={inputProps.backdropBrightness}
                 opacity={inputProps.opacity}
-                backdropSaturate={inputProps.backdropSaturate}
+                saturation={inputProps.backdropSaturate}
                 className="component-card"
               >
                 <h3>Search Input</h3>
@@ -563,12 +457,13 @@ function Components() {
                     <GlassInput 
                       placeholder="Search components..."
                       className="search-input"
-                      backdropBlur={inputProps.backdropBlur}
-                      backdropBrightness={inputProps.backdropBrightness}
-                      opacity={inputProps.opacity}
-                      borderRadius={inputProps.borderRadius}
-                      backdropSaturate={inputProps.backdropSaturate}
-                      color="white"
+                      style={{
+                        borderRadius: `${inputProps.borderRadius}px`,
+                        backdropFilter: `blur(${inputProps.backdropBlur}px) saturate(${inputProps.backdropSaturate}) brightness(${inputProps.backdropBrightness}%) contrast(1.2)`,
+                        background: `rgba(255, 255, 255, ${inputProps.opacity})`,
+                        border: `0.5px solid rgba(255, 255, 255, 0.18)`,
+                        color: 'white'
+                      }}
                     />
                   </div>
                 </div>
@@ -582,7 +477,7 @@ function Components() {
   onChange={(e) => setInputValue(e.target.value)}
   style={{
     borderRadius: ${inputProps.borderRadius}px,
-    backdropFilter: \`blur(\${${inputProps.blur}}px) saturate(\${${inputProps.saturation}}) brightness(\${${inputProps.brightness}}%) contrast(1.2)\`,
+    backdropFilter: \`blur(\${${inputProps.backdropBlur}}px) saturate(\${${inputProps.backdropSaturate}}) brightness(\${${inputProps.backdropBrightness}}%) contrast(1.2)\`,
     background: \`rgba(255, 255, 255, ${inputProps.opacity})\`,
     border: \`0.5px solid rgba(255, 255, 255, 0.18)\`,
     boxShadow: \`0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)\`
@@ -683,7 +578,13 @@ function Components() {
             <p>Modal dialogs with glass overlay effects</p>
             
             <GlassPropertiesControl
-              properties={modalProps}
+              properties={{
+                backdropBlur: modalProps.blur,
+                backdropBrightness: modalProps.brightness,
+                opacity: modalProps.opacity,
+                borderRadius: modalProps.borderRadius,
+                backdropSaturate: modalProps.saturation
+              }}
               onPropertyChange={(prop, value) => setModalProps(prev => ({ ...prev, [prop]: value }))}
             />
             
@@ -712,13 +613,6 @@ function Components() {
             <GlassModal
               isOpen={showModal}
               onClose={() => setShowModal(false)}
-              style={{
-                borderRadius: `${modalProps.borderRadius}px`,
-                backdropFilter: `blur(${modalProps.blur}px) saturate(${modalProps.saturation}) brightness(${modalProps.brightness}%) contrast(1.2)`,
-                background: `rgba(255, 255, 255, ${modalProps.opacity})`,
-                border: `0.5px solid rgba(255, 255, 255, 0.18)`,
-                boxShadow: `0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25)`
-              }}
             >
               <h2>Glass Modal</h2>
               <p>This is a modal with glass morphism effects</p>
